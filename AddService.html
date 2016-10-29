@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="style.css"> 
+
+	<script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyCKRDWUOeyrw0tNV8V9Scs6w9fEDHOQ6iA",
+	    authDomain: "volunteerwebsites-f4338.firebaseapp.com",
+	    databaseURL: "https://volunteerwebsites-f4338.firebaseio.com",
+	    storageBucket: "volunteerwebsites-f4338.appspot.com",
+	    messagingSenderId: "144093290072"
+	  };
+	  firebase.initializeApp(config);
+
+	  var database = firebase.database();
+
+	  function writeUserData(userId, name, email, imageUrl) {
+	  	firebase.database().ref('users/' + userId).set({
+	  		username: name,
+	  		email: email,
+	  		profie
+	  	})
+	  }
+
+	  function writeService(name, url, email, phone, address, tag) {
+	  	alert("test2");
+	  	firebase.database().ref(name).set({
+	  		name: name,
+	  		url: url,
+	  		email: email,
+	  		phone: phone,
+	  		address: address,
+	  		tag: tag
+	  	})
+	  }
+
+	  function getElements() {
+	  	
+	  	var name = document.getElementById("name").value;
+	  	var url = document.getElementById("url").value;
+	  	var email = document.getElementById("email").value;
+	  	var phone = document.getElementById("phone").value;
+	  	var address = document.getElementById("address").value;
+	  	var tag = document.querySelector('input[name="tag"]:checked').value;
+
+	
+	  	writeService(name, url, email, phone, address, tag);
+	  	
+	  }
+	  //document.getElementById("clicked").onclick = getElements();
+	  function myFunction() {
+	  		alert("test");
+		}
+	</script>
+</head>
+<body>
+
+<div class = "container">
+<div class="main">
+<div class = "back">
+	<form id="service" action = "form_action.asp">
+	
+		<h1>Please enter information about a volunteering organization below:</h1>
+		Name of the service: <input type="text" name="name" id="name" placeholder="Northwest Harvest"><br>
+		URL to register to volunteer: <input type="text" name="url" id="url" placeholder="http://www.northwestharvest.org/opportunities" required><br>
+		Email of service: <input type="text" name="email" id="email" placeholder="volunteer@northwestharvest.org" required><br>
+		Phone number of service:<input type="text" name="phone" id="phone" placeholder="(206) 625-0755" required><br>
+		Address of service:<input type="text" name="address"  id="address" placeholder="711 Cherry St, Seattle, WA 98104" required><br>
+		Specify what type of volunteering opportunity this is<br><br>
+		<input type="radio" name="tag" value="homeless" id="tag" checked>Homeless<br>
+		<input type="radio" name="tag" value="environmental"  id="tag" checked>Environmental<br>
+		<input type="radio" name="tag" value="animal"  id="tag" checked>Animal<br>
+		<input type="radio" name="tag" value="health"  id="tag" checked>Health<br><br>
+		<input id = "clicked" type="button" value="Submit" onclick="getElements()">
+
+	</form>
+	</div>
+</div>
+</div>
+
+</body>
+</html>
